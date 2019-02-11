@@ -98,7 +98,7 @@ function getMailValue() {
   return $('#mail').val();
 }
 
-//Email Real Time Message
+//Email Real Time Message & conditional
 $('label[for=mail]').append('<span class="ErrorText"> </span>');
 $('.ErrorText').css('color', 'red');
 
@@ -337,6 +337,10 @@ $('form').submit(function(e) {
   }
 
 //email Validation
+if ($('#mail').val().length === 0) {
+  $('.ErrorText').text(' Please Enter Valid Email');
+}
+
 if ( mailValueBoolen === false || $.trim($("#mail").val()) === "") {
     inValidField('mail', "#mail");
     e.preventDefault();
