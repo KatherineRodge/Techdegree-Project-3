@@ -339,8 +339,6 @@ $('form').submit(function(e) {
 //email Validation
 if ( mailValueBoolen === false || $.trim($("#mail").val()) === "") {
     inValidField('mail', "#mail");
-    console.log(submitMailValue);
-    console.log(mailValueBoolen);
     e.preventDefault();
   }  else {
     inValidFieldReset('mail', "#mail");
@@ -377,9 +375,6 @@ if (isCvvValid === false || $.trim($("#cvv").val()) === "") {
 } else {
   inValidFieldReset('cvv', "#cvv");
 }
-
-} else {
-  $('form').submit();
 }
 
 });
