@@ -19,8 +19,7 @@ let checkedInput = 0;
 let emailfilter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/gmi;
 let mailValue = $('#mail').value;
 
-const creditCard13 = /^[0-9]{13}$/gmi;
-const creditCard16 = /^[0-9]{16}$/gmi;
+const creditCardMatch = /^[0-9]{13,16}$/gmi;
 const zip = /^[0-9]{5}$/gmi;
 const cvv = /^[0-9]{3}$/gmi;
 
@@ -60,11 +59,9 @@ function cardSelected() {
 
 //check if credit card number is valid
 function cardValid(cardNumber) {
-  creditCard13.lastIndex = 0;
-  creditCard16.lastIndex = 0;
-  let cc13 = creditCard13.test(cardNumber);
-  let cc16 = creditCard16.test(cardNumber);
-    if ( cc13 || cc16 ) {
+  creditCardMatch.lastIndex = 0;
+  let cc = creditCardMatch.test(cardNumber);
+    if ( cc ) {
       return true;
     } else {
       return false;
@@ -144,7 +141,7 @@ $('#mail').on("input", function() {
 $('#other-title').hide();
 
 //Hide unless other is selected
-$("#title").on('click', function() {
+$("#title").on('change', function() {
   if ($(this).val() === 'other') {
     $("#other-title").show();
   } else {
@@ -156,7 +153,7 @@ $("#title").on('click', function() {
 $("#colors-js-puns").hide();
 
 //Color options for T-shirt Designer
-$("#design").on('click', function() {
+$("#design").on('change', function() {
   const optionColorArray = $('#color').children();
   const punArray = [];
   const heartArray = [];
@@ -264,7 +261,7 @@ if($('defaultPayment[attr="selected"]')){
 }
 
 //dropdown change
-$("#payment").on('click', function() {
+$("#payment").on('change', function() {
 //paypal
   if ($(this).val() === 'paypal') {
       defaultPayment.attr('selected', false);
